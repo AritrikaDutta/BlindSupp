@@ -18,3 +18,4 @@ scipy
 moviepy
 Pillow
 deep-sort-realtime
+gTTS
