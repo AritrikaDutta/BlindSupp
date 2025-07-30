@@ -17,3 +17,4 @@ sounddevice
 scipy
 moviepy
 Pillow
+deep-sort-realtime
