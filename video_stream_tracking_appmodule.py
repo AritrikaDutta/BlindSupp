@@ -5,7 +5,7 @@ import pandas as pd
 from ultralytics import YOLO
 from deep_sort_realtime.deepsort_tracker import DeepSort
 
-from velocity_tracker_2 import VelocityTracker
+from velocity_tracker import VelocityTracker
 from zone_utils_1 import define_zones, get_all_zones_for_bbox, draw_zones_on_image
 from voice_feedback import VoiceAlertManager
 
