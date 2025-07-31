@@ -5,26 +5,22 @@ import joblib
 import gzip
 import shutil
 import pandas as pd
-from ultralytics import YOLO
 from deep_sort_realtime.deepsort_tracker import DeepSort
 
 from velocity_tracker import VelocityTracker
 from zone_utils import define_zones, get_all_zones_for_bbox, draw_zones_on_image
 from voice_feedback import VoiceAlertManager
 
-# === Initialize Once ===
-gz_file = "best.pt.gz"
-pt_file = "best.pt"
 
-# Decompress if not already extracted
-if not os.path.exists(pt_file):
-    with gzip.open(gz_file, "rb") as f_in:
-        with open(pt_file, "wb") as f_out:
-            shutil.copyfileobj(f_in, f_out)
-    print(f"Decompressed {gz_file} → {pt_file}")
+# Decompress before loading
+with gzip.open("best.pt.gz", "rb") as f_in:
+    with open("best.pt", "wb") as f_out:
+        shutil.copyfileobj(f_in, f_out)
 
-# Load model
-model = YOLO(pt_file)
+from ultralytics import YOLO
+model = YOLO("best.pt")
+        
+
 # model = YOLO("best.pt")
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
