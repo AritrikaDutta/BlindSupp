@@ -10,7 +10,7 @@ from zone_utils import define_zones, get_all_zones_for_bbox, draw_zones_on_image
 from voice_feedback import VoiceAlertManager
 
 # === Initialize Once ===
-model = YOLO("runs/train/custom_yolov8n/weights/best.pt")
+model = YOLO("best.pt")
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
 classifier = joblib.load("random_forest_model.pkl")
