@@ -19,6 +19,4 @@ Pillow
 deep-sort-realtime
 gTTS
 pydub
-ffmpeg
-libsm6
-libxext6
+
