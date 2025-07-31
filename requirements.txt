@@ -19,3 +19,4 @@ moviepy
 Pillow
 deep-sort-realtime
 gTTS
+pydub
