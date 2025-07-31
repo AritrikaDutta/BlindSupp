@@ -1,6 +1,7 @@
 import cv2
 import torch
 import joblib
+import gzip
 import pandas as pd
 from ultralytics import YOLO
 from deep_sort_realtime.deepsort_tracker import DeepSort
@@ -13,9 +14,10 @@ from voice_feedback import VoiceAlertManager
 model = YOLO("best.pt")
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
-classifier = joblib.load("random_forest_model.pkl")
 voice_alert = VoiceAlertManager()
-
+with gzip.open("random_forest_model.pkl.gz", "rb") as f:
+    classifier = joblib.load(f)
+    
 # Global variables
 zones = None
 frame_width, frame_height = None, None
