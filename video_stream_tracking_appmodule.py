@@ -18,7 +18,7 @@ with gzip.open("best.pt.gz", "rb") as f_in:
         shutil.copyfileobj(f_in, f_out)
 
 from ultralytics import YOLO
-model = YOLO("best.pt")
+model = YOLO("best.pt", task = "detect")
         
 
 # model = YOLO("best.pt")
