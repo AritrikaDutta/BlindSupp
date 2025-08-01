@@ -56,6 +56,10 @@ if not os.path.exists(weights_path):
 print(f"ℹ️ Attempting to load YOLO weights from: {weights_path}")
 print(f"ℹ️ File exists? {os.path.exists(weights_path)} | Size: {os.path.getsize(weights_path) if os.path.exists(weights_path) else 'N/A'} bytes")
 
+if os.path.exists(weights_path):
+    print("File size:", os.path.getsize(weights_path))
+    print("First 64 bytes:", open(weights_path, "rb").read(64))
+
 try:
     model = YOLO(weights_path)
     print("✅ YOLO model loaded successfully!")
