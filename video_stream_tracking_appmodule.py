@@ -1,5 +1,6 @@
 import os
 import cv2
+import gdown
 import torch
 import joblib
 import gzip
@@ -26,7 +27,20 @@ from ultralytics import YOLO
 #                        f"Check if the file is a valid YOLO weight file. Original error: {e}")
 
 # model = YOLO("best.pt")
-model = YOLO("runs/train/best.pt")
+# model = YOLO("runs/train/best.pt")
+
+gdrive_url = "https://drive.google.com/uc?id=1cnIIgDjVXEmg1JmKz-bdAFf_NDMfS9ic"
+weights_path = "best.pt"
+
+# Download if not already present
+if not os.path.exists(weights_path):
+    print("Downloading YOLO weights from Google Drive...")
+    gdown.download(gdrive_url, weights_path, quiet=False)
+
+# Load the model
+model = YOLO(weights_path)
+print("✅ YOLO model loaded successfully!")
+
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
 voice_alert = VoiceAlertManager()
