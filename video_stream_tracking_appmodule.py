@@ -47,7 +47,7 @@ from ultralytics import YOLO
 gdrive_url = "https://drive.google.com/uc?id=1cnIIgDjVXEmg1JmKz-bdAFf_NDMfS9ic"
 model = r"runs\train\best.pt"
 
-if not os.path.exists(weights_path):
+if not os.path.exists(model):
     print("Downloading YOLO weights from Google Drive...")
     gdown.download(gdrive_url, "best.pt", quiet=False, fuzzy=True)
     model = "best.pt"
