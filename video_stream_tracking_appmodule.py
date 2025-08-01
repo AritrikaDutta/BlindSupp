@@ -26,6 +26,7 @@ from ultralytics import YOLO
 #                        f"Check if the file is a valid YOLO weight file. Original error: {e}")
 
 model = YOLO("best.pt")
+model = YOLO("runs/train/best.pt")
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
 voice_alert = VoiceAlertManager()
