@@ -25,7 +25,7 @@ from ultralytics import YOLO
 #     raise RuntimeError(f"Failed to load YOLO model from best.pt. "
 #                        f"Check if the file is a valid YOLO weight file. Original error: {e}")
 
-model = YOLO("best.pt")
+# model = YOLO("best.pt")
 model = YOLO("runs/train/best.pt")
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
