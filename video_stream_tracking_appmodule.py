@@ -29,20 +29,28 @@ from ultralytics import YOLO
 # model = YOLO("best.pt")
 # model = YOLO("runs/train/best.pt")
 
-gdrive_url = "https://drive.google.com/uc?id=1cnIIgDjVXEmg1JmKz-bdAFf_NDMfS9ic"
-weights_path = "best.pt"
+# gdrive_url = "https://drive.google.com/uc?id=1cnIIgDjVXEmg1JmKz-bdAFf_NDMfS9ic"
+# weights_path = "best.pt"
 
-# Download if not already present
+# # Download if not already present
+# if not os.path.exists(weights_path):
+#     print("Downloading YOLO weights from Google Drive...")
+#     gdown.download(gdrive_url, weights_path, quiet=False)
+
+# # Load the YOLO model
+# try:
+#     model = YOLO(weights_path)
+#     print("✅ YOLO model loaded successfully!")
+# except Exception as e:
+#     raise RuntimeError(f"❌ Failed to load YOLO model. File may be corrupted. Error: {e}")
+
+gdrive_url = "https://drive.google.com/uc?id=1cnIIgDjVXEmg1JmKz-bdAFf_NDMfS9ic"
+weights_path = r"runs\train\best.pt"
+
 if not os.path.exists(weights_path):
     print("Downloading YOLO weights from Google Drive...")
-    gdown.download(gdrive_url, weights_path, quiet=False)
-
-# Load the YOLO model
-try:
-    model = YOLO(weights_path)
-    print("✅ YOLO model loaded successfully!")
-except Exception as e:
-    raise RuntimeError(f"❌ Failed to load YOLO model. File may be corrupted. Error: {e}")
+    gdown.download(gdrive_url, "best.pt", quiet=False, fuzzy=True)
+    weights_path = "best.pt"
 
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
