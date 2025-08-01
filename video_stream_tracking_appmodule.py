@@ -45,12 +45,19 @@ from ultralytics import YOLO
 #     raise RuntimeError(f"❌ Failed to load YOLO model. File may be corrupted. Error: {e}")
 
 gdrive_url = "https://drive.google.com/uc?id=1cnIIgDjVXEmg1JmKz-bdAFf_NDMfS9ic"
-model = r"runs\train\best.pt"
+weights_path = r"runs\train\best.pt"
 
-if not os.path.exists(model):
+if not os.path.exists(weights_path):
     print("Downloading YOLO weights from Google Drive...")
     gdown.download(gdrive_url, "best.pt", quiet=False, fuzzy=True)
-    model = "best.pt"
+    weights_path = "best.pt"
+
+# ✅ Load YOLO model object
+try:
+    model = YOLO(weights_path)
+    print("✅ YOLO model loaded successfully!")
+except Exception as e:
+    raise RuntimeError(f"❌ Failed to load YOLO model. Error: {e}")
 
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
