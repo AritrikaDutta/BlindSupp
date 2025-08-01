@@ -12,20 +12,20 @@ from zone_utils import define_zones, get_all_zones_for_bbox, draw_zones_on_image
 from voice_feedback import VoiceAlertManager
 
 
-# Decompress before loading
-if not os.path.exists("best.pt") or os.path.getsize("best.pt") == 0:
-    with gzip.open("best.pt.gz", "rb") as f_in:
-        with open("best.pt", "wb") as f_out:
-            shutil.copyfileobj(f_in, f_out)
+# # Decompress before loading
+# if not os.path.exists("best.pt") or os.path.getsize("best.pt") == 0:
+#     with gzip.open("best.pt.gz", "rb") as f_in:
+#         with open("best.pt", "wb") as f_out:
+#             shutil.copyfileobj(f_in, f_out)
 
 from ultralytics import YOLO
-try:
-    model = YOLO("best.pt", task = "detect")
-except Exception as e:
-    raise RuntimeError(f"Failed to load YOLO model from best.pt. "
-                       f"Check if the file is a valid YOLO weight file. Original error: {e}")
+# try:
+#     model = YOLO("best.pt", task = "detect")
+# except Exception as e:
+#     raise RuntimeError(f"Failed to load YOLO model from best.pt. "
+#                        f"Check if the file is a valid YOLO weight file. Original error: {e}")
 
-# model = YOLO("best.pt")
+model = YOLO("best.pt")
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
 voice_alert = VoiceAlertManager()
