@@ -37,9 +37,12 @@ if not os.path.exists(weights_path):
     print("Downloading YOLO weights from Google Drive...")
     gdown.download(gdrive_url, weights_path, quiet=False)
 
-# Load the model
-model = YOLO(weights_path)
-print("✅ YOLO model loaded successfully!")
+# Load the YOLO model
+try:
+    model = YOLO(weights_path)
+    print("✅ YOLO model loaded successfully!")
+except Exception as e:
+    raise RuntimeError(f"❌ Failed to load YOLO model. File may be corrupted. Error: {e}")
 
 tracker = DeepSort(max_age=30)
 velocity_tracker = VelocityTracker()
