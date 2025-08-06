@@ -12,6 +12,11 @@ from velocity_tracker import VelocityTracker
 from zone_utils import define_zones, get_all_zones_for_bbox, draw_zones_on_image
 from voice_feedback import VoiceAlertManager
 
+from ultralytics.nn.tasks import DetectionModel
+
+# Allow YOLO's custom DetectionModel to be safely unpickled
+torch.serialization.add_safe_globals([DetectionModel])
+
 
 # # Decompress before loading
 # if not os.path.exists("best.pt") or os.path.getsize("best.pt") == 0:
